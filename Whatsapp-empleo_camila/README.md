@@ -29,7 +29,7 @@ Cuando detecta nuevas ofertas, hace **commit & push** al repositorio automática
 > Necesitas **Python 3.10+** y **Git** instalados.
 
 ```bash
-# Clona tu repo y entra a la carpeta
+
 git clone <URL_DE_TU_REPO>
 cd <carpeta_del_repo>
 
