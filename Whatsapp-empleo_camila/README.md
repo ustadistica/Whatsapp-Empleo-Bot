@@ -4,8 +4,6 @@
 Automatiza la captura de ofertas publicadas en **un canal de WhatsApp** y las guarda en **SQLite** y en **CSV**.
 Cuando detecta nuevas ofertas, hace **commit & push** al repositorio automáticamente.
 
-> ⚠️ Usa esto solo con permiso y sin exponer datos sensibles (p. ej., correos/teléfonos) si el repositorio es público.
-
 ## Estructura
 
 ```
@@ -25,16 +23,6 @@ Cuando detecta nuevas ofertas, hace **commit & push** al repositorio automática
    ├─ push.py
    └─ utils.py
 ```
-
-## Paso a paso (GitHub Web)
-
-1) Descarga este proyecto como **ZIP** desde el enlace que te pasé en el chat.
-2) Descomprime el ZIP en tu computador.
-3) En tu repositorio de GitHub (p. ej. *Bot de empleo de WhatsApp*), ve a **Código → Agregar archivo → Subir archivos**.
-4) Arrastra la **carpeta y archivos** descomprimidos (puedes arrastrar carpetas completas).
-5) Escribe un mensaje de confirmación y pulsa **Commit** a la rama principal.
-
-> Si GitHub no te deja arrastrar carpetas, sube primero los archivos de la raíz (README.md, requirements.txt, .gitignore, .env.example) y luego, en la misma pantalla, arrastra la carpeta `src` y las carpetas `data` y `db`. Los `.gitkeep` permiten subir carpetas vacías.
 
 ## Configuración local y ejecución
 
@@ -58,8 +46,8 @@ python -m playwright install
 Copia `.env.example` a `.env` y edita los valores:
 
 ```
-CHANNEL_URL=https://whatsapp.com/channel/XXXXXXXXXX   # tu enlace de canal
-REPO_PATH=                                            # deja vacío para autodetectar
+CHANNEL_URL=https://whatsapp.com/channel/XXXXXXXXXX  
+REPO_PATH=                                            
 REMOTE_NAME=origin
 BRANCH=main   # o 'principal' si tu rama se llama así
 ```
@@ -90,7 +78,3 @@ python src/watcher.py
 - Ajusta las **regex** en `src/parser.py` si el canal tiene una plantilla fija (Empresa, Cargo, Ubicación, etc.).
 - En `watcher.py`, la función `parece_oferta()` filtra mensajes que parezcan vacantes para evitar ruido.
 
-## Problemas comunes
-- **No empuja a GitHub**: asegúrate de tener permisos para `origin` (token HTTPS o SSH) y que `git remote -v` apunta a tu repo.
-- **No detecta textos**: la UI de WhatsApp Web cambia. Edita los selectores en `SELECTORS_CANDIDATOS` y `MSG_TEXT_SELECTORS` en `watcher.py`.
-- **Se cierra la sesión**: vuelve a correr `python src/watcher.py` y escanea el QR otra vez.
