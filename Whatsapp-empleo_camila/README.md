@@ -30,51 +30,42 @@ Cuando detecta nuevas ofertas, hace **commit & push** al repositorio automática
 
 ```bash
 
-git clone <URL_DE_TU_REPO>
-cd <carpeta_del_repo>
+git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+cd TU_REPOSITORIO
 
-# Crea entorno e instala dependencias
 python -m venv .venv
-# Windows: .\.venv\Scripts\activate
-# Linux/Mac:
-source .venv/bin/activate
+.\.venv\Scripts\activate
 
 pip install -r requirements.txt
 python -m playwright install
+
+copy .env.example .env
+
 ```
 
-Copia `.env.example` a `.env` y edita los valores:
-
-```
-CHANNEL_URL=https://whatsapp.com/channel/XXXXXXXXXX  
-REPO_PATH=                                            
+CHANNEL_URL=https://whatsapp.com/channel/0029VaiShJNBvvsiioOo7c0U
+REPO_PATH=
 REMOTE_NAME=origin
-BRANCH=main   # o 'principal' si tu rama se llama así
+BRANCH=main
+
+
+```
+
+
 ```
 
 Opcional: configura Git si no lo has hecho ya (solo una vez por máquina):
 
 ```bash
-git config --global user.name "Tu Nombre"
-git config --global user.email "tu@correo.com"
+git config --global user.name "Camila Reyes"
+git config --global user.email "camiandreareyes2@gmail.com"
 ```
 
-### Ejecuta el bot
+### Ejecutar el bot
 
 ```bash
 # Desde la carpeta raíz del repo (donde está README.md)
 python src/watcher.py
 ```
 
-- La primera vez se abrirá **WhatsApp Web** y te pedirá escanear el **QR**.
-- El bot leerá los últimos mensajes del **canal** y cada 5 segundos revisará si hay nuevos.
-- Cuando detecte una **oferta**, la guardará en `db/ofertas.sqlite`, exportará `data/ofertas.csv` y hará **commit & push** si hay cambios.
-
-### Verifica resultados
-- Revisa `data/ofertas.csv` (debería crecer cuando haya nuevas ofertas).
-- En GitHub, mira los commits automáticos con el mensaje `chore(data): oferta ...`.
-
-## Personalización
-- Ajusta las **regex** en `src/parser.py` si el canal tiene una plantilla fija (Empresa, Cargo, Ubicación, etc.).
-- En `watcher.py`, la función `parece_oferta()` filtra mensajes que parezcan vacantes para evitar ruido.
 
