@@ -1,0 +1,34 @@
+2025/10/22-15:29:45.155 2f20 Reusing MANIFEST C:\Users\Josue\Documents\Whatsapp-Empleo-Bot\chrome_cache\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/10/22-15:29:45.156 2f20 Recovering log #788
+2025/10/22-15:29:45.192 2f20 Reusing old log C:\Users\Josue\Documents\Whatsapp-Empleo-Bot\chrome_cache\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000788.log 
+2025/10/22-15:29:47.292 66ec Level-0 table #809: started
+2025/10/22-15:29:47.318 66ec Level-0 table #809: 424321 bytes OK
+2025/10/22-15:29:47.320 66ec Delete type=0 #788
+2025/10/22-15:29:47.324 66ec Manual compaction at level-0 from '\x00'\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00(\x00\x00\x00' @ 0 : 0; will stop at '\x00'\x00\x00\x05' @ 2431530 : 1
+2025/10/22-15:29:47.324 66ec Compacting 1@0 + 0@1 files
+2025/10/22-15:29:47.342 66ec Generated table #810@0: 8700 keys, 77856 bytes
+2025/10/22-15:29:47.363 66ec Generated table #811@0: 7133 keys, 165348 bytes
+2025/10/22-15:29:47.363 66ec Compacted 1@0 + 0@1 files => 243204 bytes
+2025/10/22-15:29:47.363 66ec compacted to: files[ 0 2 24 0 0 0 0 ]
+2025/10/22-15:29:47.364 66ec Delete type=2 #809
+2025/10/22-15:29:47.366 66ec Manual compaction at level-0 from '\x00'\x00\x00\x05' @ 2431530 : 1 .. '\x00(\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/10/22-15:29:48.952 5700 Compacting 1@1 + 4@2 files
+2025/10/22-15:29:49.109 5700 Generated table #812@1: 82131 keys, 2266215 bytes
+2025/10/22-15:29:49.298 5700 Generated table #813@1: 28132 keys, 2314784 bytes
+2025/10/22-15:29:49.398 5700 Generated table #814@1: 27530 keys, 2187401 bytes
+2025/10/22-15:29:49.535 5700 Generated table #815@1: 96270 keys, 2245886 bytes
+2025/10/22-15:29:49.540 5700 Generated table #816@1: 732 keys, 74025 bytes
+2025/10/22-15:29:49.540 5700 Compacted 1@1 + 4@2 files => 9088311 bytes
+2025/10/22-15:29:49.541 5700 compacted to: files[ 0 1 25 0 0 0 0 ]
+2025/10/22-15:29:49.541 5700 Delete type=2 #797
+2025/10/22-15:29:49.542 5700 Delete type=2 #798
+2025/10/22-15:29:49.542 5700 Delete type=2 #799
+2025/10/22-15:29:49.542 5700 Delete type=2 #800
+2025/10/22-15:29:49.542 5700 Delete type=2 #811
+2025/10/22-15:29:49.556 2f20 Compacting 1@1 + 1@2 files
+2025/10/22-15:29:49.652 2f20 Generated table #817@1: 56657 keys, 2224278 bytes
+2025/10/22-15:29:49.656 2f20 Generated table #818@1: 7 keys, 1005 bytes
+2025/10/22-15:29:49.656 2f20 Compacted 1@1 + 1@2 files => 2225283 bytes
+2025/10/22-15:29:49.657 2f20 compacted to: files[ 0 0 26 0 0 0 0 ]
+2025/10/22-15:29:49.658 2f20 Delete type=2 #801
+2025/10/22-15:29:49.658 2f20 Delete type=2 #810

@@ -29,11 +29,21 @@ def es_texto_valido(texto):
 conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS mensajes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    remitente TEXT,
+    contenido TEXT,
+    fecha_hora TEXT
+)
+""")
+conn.commit()
 # -------------------------
 # Inicializar navegador
 # -------------------------
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
+options.add_argument(r"--user-data-dir=C:\Users\Josue\Documents\Whatsapp-Empleo-Bot\chrome_cache")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 # -------------------------
@@ -85,82 +95,26 @@ except Exception as e:
 time.sleep(3)
 
 # -------------------------
-# Hacer scroll en el chat para cargar más mensajes
+# Extraer mensajes
 # -------------------------
-mensajes_guardados = set()
+mensajes = driver.find_elements(
+    By.XPATH,
+    "//span[contains(@class,'selectable-text') or @data-testid='message-text']"
+)
 
-try:
-    posibles_selectores = [
-        "//div[@aria-label='Mensajes']",
-        "//div[@aria-label='Messages']",
-        "//div[@role='region']",
-        "//div[contains(@class,'x1n2onr6')]",
-        "//div[contains(@class,'_ak9t')]"
-    ]
-    
-    chat_box = None
-    for selector in posibles_selectores:
-        try:
-            chat_box = WebDriverWait(driver, wait_timeout).until(
-                EC.presence_of_element_located((By.XPATH, selector))
-            )
-            print(f"✅ Contenedor encontrado con selector: {selector}")
-            break
-        except:
-            continue
+print(f"📩 Se encontraron {len(mensajes)} mensajes visibles.\n")
 
-    if not chat_box:
-        raise Exception("No se pudo localizar el contenedor del chat.")
-
-    # Scroll en bucle
-    for i in range(5):  # Ajusta cuántos ciclos de scroll quieres
-        driver.execute_script("arguments[0].scrollTop = arguments[0].scrollTop - 800;", chat_box)
-        time.sleep(2)
-
-        # Buscar mensajes de texto y mensajes en imágenes con alt
-        mensajes_texto = driver.find_elements(
-            By.XPATH,
-            "//span[contains(@class,'selectable-text') or @data-testid='message-text']"
-        )
-        mensajes_img = driver.find_elements(By.XPATH, "//img[@alt]")
-        mensajes = mensajes_texto + mensajes_img
-
-        print(f"📩 Ciclo {i+1}: {len(mensajes)} mensajes visibles")
-
-        for m in mensajes:
-            try:
-                # Extraer texto
-                if m.tag_name == "img":
-                    texto = m.get_attribute("alt").strip()
-                else:
-                    texto = m.text.strip()
-
-                # Extraer fecha/hora desde el atributo title (ejemplo: "16/9/2025 21:56")
-                fecha_hora = m.get_attribute("title")
-                if fecha_hora:
-                    try:
-                        # Ajustar formato según cómo WhatsApp muestre la fecha en tu idioma
-                        fecha_dt = datetime.strptime(fecha_hora, "%d/%m/%Y %H:%M")
-                        fecha_str = fecha_dt.strftime("%Y-%m-%d %H:%M:%S")
-                    except:
-                        fecha_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                else:
-                    fecha_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-                # Guardar solo si es texto válido y no está repetido
-                if texto and es_texto_valido(texto) and (texto, fecha_str) not in mensajes_guardados:
-                    mensajes_guardados.add((texto, fecha_str))
-                    cursor.execute(
-                        "INSERT INTO mensajes (remitente, contenido, fecha_hora) VALUES (?, ?, ?)",
-                        (nombre_canal, texto, fecha_str)
-                    )
-                    print(f"💬 Guardado en BD: {texto} | 🕒 {fecha_str}")
-
-            except Exception as e:
-                print(f"⚠️ Error al insertar mensaje: {e}")
-
-except Exception as e:
-    print(f"⚠️ No se pudo hacer scroll o extraer mensajes: {e}")
+for m in mensajes:
+    try:
+        texto = m.text.strip()
+        if texto:
+            cursor.execute(
+                "INSERT INTO mensajes (remitente, contenido) VALUES (?, ?)",
+                (nombre_canal, texto))
+            
+            print(f"💬 Guardado en BD: {texto}")
+    except Exception as e:
+        print(f"⚠️ Error al insertar: {e}")
 
 # -------------------------
 # Guardar en BD
