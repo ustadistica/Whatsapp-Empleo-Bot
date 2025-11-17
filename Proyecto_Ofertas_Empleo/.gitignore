@@ -1,0 +1,6 @@
+# Nunca subir archivos de entorno
+**/.env
+
+# Nunca subir venv
+.venv/
+venv/
