@@ -1,5 +1,0 @@
-.env
-/data/*.csv
-/data/*.xlsx
-/logs/
-/chrome-profile/
