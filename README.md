@@ -16,23 +16,19 @@ Responsables
 
 ## Introducción
 
-El proyecto tiene como objetivo *analizar ofertas laborales publicadas en canales de WhatsApp en Colombia, una fuente informal pero cada vez más utilizada para la búsqueda de empleo. Debido a que estas ofertas suelen ser **desestructuradas, incompletas y altamente heterogéneas*, se requiere un proceso sistemático de recolección, limpieza y análisis para convertirlas en información útil sobre el mercado laboral colombiano.
+El proyecto tiene como objetivo analizar ofertas laborales publicadas en canales de WhatsApp en Colombia, una fuente informal pero cada vez más utilizada para la búsqueda de empleo. Debido a que estas ofertas suelen ser desestructuradas, incompletas y altamente heterogéneas, se requiere un proceso sistemático de recolección, limpieza y análisis para convertirlas en información útil sobre el mercado laboral colombiano.
 
-Para ello se desarrolló un pipeline en Python que realiza *web scraping, normalización del texto y **clasificación automática de las ofertas* usando dos enfoques complementarios:
+Para ello se desarrolló un pipeline en Python que realiza *web scraping, normalización del texto y  clasificación automática de las ofertas* usando dos enfoques complementarios:
 
 1. *Reglas basadas en palabras clave*
 2. *Modelos de lenguaje (IA) para clasificación ocupacional*
    incluyendo categorías propias y referencias a la *Clasificación Nacional de Ocupaciones (CNO/CUOC)* de Colombia.
 
-El resultado es una base de datos estructurada que permite estudiar sectores económicos, perfiles laborales, ubicaciones, salarios y patrones del mercado laboral que circula en canales alternativos de difusión.
+El resultado es una base de datos estructurada que permite estudiar sectores económicos, perfiles laborales patrones del mercado laboral que circula en canales alternativos de difusión.
 
 ---
 
-
-
----
-
-## 1. Descripción General
+## Descripción General
 
 Este repositorio documenta la primera fase del proyecto, cuyo propósito es *construir y depurar una base de datos de ofertas laborales* extraídas de un canal de WhatsApp y clasificarlas de manera sistemática.
 
@@ -44,13 +40,11 @@ Las fases realizadas incluyen:
 * *Clasificación ocupacional preliminar* según categorías del *CNO/CUOC*.
 * Integración de la información en un archivo estructurado (analisis_ofertas_empleo_clasificado.json).
 
-El objetivo final es crear un insumo que permita *análisis exploratorios, construcción de dashboards, y fases posteriores de **modelamiento con IA* para predicción, extracción semántica avanzada o detección de tendencias laborales.
+El objetivo final es crear un insumo que permita análisis exploratorios, construcción de dashboards, y fases posteriores de *modelamiento con IA* para predicción, extracción semántica avanzada o detección de tendencias laborales.
 
----
 
-## 2. ¿Qué debemos saber sobre el proyecto?
 
-### 2.1. ¿Cómo son los datos originales en WhatsApp?
+### ¿Cómo son los datos originales en WhatsApp?
 
 Los mensajes del canal presentan problemas comunes:
 
@@ -65,7 +59,7 @@ Se desarrolló un módulo de *limpieza y estandarización de texto*, eliminando 
 
 ---
 
-### 2.2. ¿Cómo se clasifican las ofertas?
+### Clasificación las ofertas
 
 Se implementó un sistema dual:
 
@@ -77,7 +71,7 @@ Ejemplos:
 * “bodega”, “logística”, “planta” → *Logística/Bodega*
 * “cajero”, “ventas”, “tienda” → *Retail/Comercial*
 
-* #### b) *Modelo de inteligencia artificial (OpenAI GPT-5o)*
+#### b) *Modelo de inteligencia artificial (OpenAI GPT-5o)*
 
 El modelo recibe:
 
@@ -93,23 +87,7 @@ Y devuelve:
 
 Se valida la salida para garantizar que pertenezca a una de las categorías definidas.
 
----
-
-### 2.3. ¿Se incluye la clasificación CNO/CUOC?
-
-Sí.
-El sistema está preparado para vincular cada oferta a un *grupo ocupacional oficial de Colombia*, permitiendo futura integración con:
-
-* DANE
-* Observatorio Laboral
-* SENA
-* Estudios de demanda laboral nacional
-
-Esto habilita análisis comparables a estadísticas laborales formales.
-
----
-
-### 2.4. ¿Qué información se obtiene de cada oferta?
+### ¿Qué información se obtiene de cada oferta?
 
 * Categoría y subcategoría laboral
 * Información clave (cargo, experiencia, salario, ubicación, requisitos)
@@ -126,7 +104,7 @@ Esto permite construir indicadores como:
 
 ---
 
-## 3. Stack Tecnológico
+## Stack Tecnológico
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange)
@@ -143,7 +121,7 @@ Esto permite construir indicadores como:
 
 ---
 
-## 4. Cómo Empezar
+## Cómo Empezar
 
 1. Clonar el repositorio
 2. Configurar entorno (Poetry o venv)
@@ -154,9 +132,9 @@ bash
 python src/clasificacion_ofertas.py
 
 
----
 
-## 5. Estructura del Repositorio
+
+## Estructura del Repositorio
 
 * */data*: Datos crudos y clasificados
 * */notebooks*: Exploración y pruebas
@@ -164,9 +142,9 @@ python src/clasificacion_ofertas.py
 * */docs*: Informe, documentación y diagramas
 * *README.md*: Manual principal del proyecto
 
----
 
-## 6. Datos y Fuentes
+
+## Datos y Fuentes
 
 *Fuente principal:*
 
@@ -180,21 +158,20 @@ python src/clasificacion_ofertas.py
 * Ubicación
 * Salario (si está disponible)
 * Experiencia y requisitos
-* Enlaces o teléfonos de contacto
 
 *Salida final:*
 analisis_ofertas_empleo_clasificado.json
 
 ---
 
-## 7. Metodología (resumen)
+## Metodología
 
 ### Fase 1 — Recolección (web scraping)
 
 * Acceso automático a WhatsApp Web
 * Extracción de todos los mensajes del canal
 * Eliminación de duplicados
-* Identificación de mensajes que corresponden a ofertas laborales
+
 
 ### Fase 2 — Limpieza y organización
 
@@ -215,51 +192,3 @@ analisis_ofertas_empleo_clasificado.json
 * Mapeo preliminar de categorías a ocupaciones
 * Preparación para futura clasificación automática con IA
 
----
-
-## 8. Flujo de Trabajo Sugerido
-
-1. *Extracción*
-
-   * Descargar mensajes del canal
-   * Identificar ofertas laborales
-
-2. *Limpieza*
-
-   * Normalizar, corregir y depurar texto
-
-3. *Clasificación*
-
-   * Reglas → IA → Categoría final
-
-4. *Integración CNO/CUOC*
-
-   * Vincular categorías a ocupaciones oficiales
-
-5. *Análisis*
-
-   * Tablas, gráficos, tendencias laborales
-
-6. *Documentación y entrega*
-
-   * JSON clasificado
-   * Notebooks y reporte
-
----
-
-## 9. Resumen General
-
-* Se construyó un pipeline robusto para extraer y clasificar ofertas laborales informales.
-* Se normalizó información heterogénea proveniente de WhatsApp.
-* Se combinaron reglas y modelos de IA para obtener una clasificación más precisa.
-* Se dejó preparado el sistema para integrar la clasificación ocupacional CNO/CUOC.
-* El resultado es una base de datos limpia, organizada y lista para análisis futuros.
-
----
-
-## 10. Licencia
-
-El proyecto se distribuye bajo licencia *MIT*.
-Los datos extraídos de WhatsApp deben ser usados respetando los derechos de privacidad y publicación establecidos por los administradores del canal.
-
----
