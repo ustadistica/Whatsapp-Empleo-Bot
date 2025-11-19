@@ -2,7 +2,9 @@ import os
 import json
 import re
 from pathlib import Path
-from openai import OpenAI, RateLimitError  
+
+import pandas as pd
+from google import genai
 from dotenv import load_dotenv
 
 # === Cargar .env desde la carpeta del proyecto ===
@@ -17,8 +19,13 @@ print(f"[DEBUG] Usando .env en: {DOTENV_PATH}")
 RUTA_JSON_ENTRADA = SCRIPT_DIR / "analisis_ofertas_empleo.json"
 RUTA_JSON_SALIDA = SCRIPT_DIR / "analisis_ofertas_empleo_clasificado.json"
 
-# Modelo válido de la API
-OPENAI_MODEL = "gpt-5o"
+# Ruta de la tabla CUOC (ajusta si está en otro sitio o nombre)
+CUOC_INDEX_PATH = SCRIPT_DIR / "CUOC-indice-2024.xlsx"
+MAX_FILAS_CUOC = 200          # para no meter toda la tabla en el prompt
+MAX_LLM_CALLS = 4             # SOLO 1 llamada a Gemini (modo prueba)
+
+# Modelo de Gemini
+GEMINI_MODEL = "gemini-2.5-flash"
 
 # Categorías que vamos a usar
 CATEGORIES = [
@@ -29,53 +36,60 @@ CATEGORIES = [
     "Tecnología/Ingeniería",
     "Administrativo/Facturación",
     "Conducción/Operaciones",
-    "Evento/Curso (no empleo)"
+    "Evento/Curso (no empleo)",
+    "Sin clasificar",  # la dejamos explícita
 ]
 
-# Reglas simples por palabras clave (en minúsculas)
-RULES = {
-    "Call center/BPO": [
-        r"\bcall\s*center\b", r"\bcontact\s*center\b", r"\basesor(?:es)?\b",
-        r"\bbpo\b"
-    ],
-    "Logística/Bodega": [
-        r"\bbodega\b", r"\blog[ií]stic", r"\boperari[oa]s?\b", r"\bplanta\b"
-    ],
-    "Salud": [
-        r"\benfermer", r"\bsalud p[úu]blica\b", r"\bsubred\b", r"\bhospital\b"
-    ],
-    "Retail/Comercial": [
-        r"\bventas?\b", r"\btienda\b", r"\bmercaderist", r"\bcajer[oa]s?\b"
-    ],
-    "Tecnología/Ingeniería": [
-        r"\bdesarrollador(?:es)?\b", r"\bprogramador(?:es)?\b",
-        r"\bingenier[oa]\b", r"\bpreventa\b", r"\bsistemas\b", r"\bsoftware\b"
-    ],
-    "Administrativo/Facturación": [
-        r"\bauxiliar administrativo\b", r"\bfacturaci[oó]n\b",
-        r"\bgesti[oó]n documental\b"
-    ],
-    "Conducción/Operaciones": [
-        r"\bconductor(?:es)?\b", r"\bC2\b", r"\bC3\b",
-        r"\boperaciones\b", r"\bparqueadero\b"
-    ],
-    "Evento/Curso (no empleo)": [
-        r"\bferia\b", r"\bcurso\b", r"\bru[eé]da de empleo\b",
-        r"\breg[ií]strate\b", r"\binscr[ií]bete\b", r"\bcharla\b"
-    ]
-}
+# ============= CLIENTE GEMINI =============
 
-# ============= CLIENTE OPENAI =============
 def get_client():
-    api_key = os.getenv("OPENAI_API_KEY")
+    """
+    Crea el cliente de Gemini.
+    Usa la variable GEMINI_API_KEY o GOOGLE_API_KEY del .env.
+    """
+    api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise RuntimeError(
-            "No se encontró la variable de entorno OPENAI_API_KEY. "
-            "Crea un archivo .env o define la variable en tu sistema."
+            "No se encontró GEMINI_API_KEY / GOOGLE_API_KEY. "
+            "Defínela en tu archivo .env dentro de Proyecto_Ofertas_Empleo."
         )
-    return OpenAI(api_key=api_key)
+    return genai.Client(api_key=api_key)
 
 client = get_client()
+
+# ============= CARGA CUOC =============
+
+def cargar_cuoc_resumen() -> str:
+    """
+    Lee la tabla CUOC y devuelve un string resumido (codigo - titulo) de las primeras N filas.
+    Si no hay filas útiles o hay error, simplemente devuelve "" y se omite CUOC en el prompt.
+    """
+    if not CUOC_INDEX_PATH.exists():
+        print(f"⚠️ No se encontró el archivo CUOC en {CUOC_INDEX_PATH}. Se omitirá CUOC en el prompt.")
+        return ""
+
+    try:
+        df = pd.read_excel(CUOC_INDEX_PATH)
+        cols = df.columns[:2]
+        df_simple = df[cols].dropna().head(MAX_FILAS_CUOC)
+
+        if df_simple.empty:
+            print("⚠️ CUOC cargado pero sin filas utilizables (0 filas).")
+            return ""
+
+        lineas = [
+            f"{row[cols[0]]} - {row[cols[1]]}"
+            for _, row in df_simple.iterrows()
+        ]
+        texto_cuoc = "\n".join(lineas)
+        print(f"📑 CUOC cargado ({len(df_simple)} filas usadas en el prompt).")
+        return texto_cuoc
+
+    except Exception as e:
+        print(f"⚠️ Error leyendo CUOC ({e}). Se omitirá CUOC en el prompt.")
+        return ""
+
+CUOC_RESUMEN = cargar_cuoc_resumen()
 
 # ============= FUNCIONES AUXILIARES =============
 
@@ -91,22 +105,19 @@ def es_texto_valido(texto: str) -> bool:
     """Descarta mensajes que son solo emojis / símbolos."""
     return bool(re.search(r"[A-Za-zÁÉÍÓÚáéíóúñÑ0-9]", texto or ""))
 
-def aplicar_reglas(texto: str) -> str | None:
-    """Devuelve categoría por reglas, o None si no matchea nada."""
-    if not texto:
-        return None
-    texto_l = texto.lower()
-    for categoria, patrones in RULES.items():
-        for patron in patrones:
-            if re.search(patron, texto_l):
-                return categoria
-    return None
+# ============= SOLO GEMINI (SIN REGLAS) =============
 
-def clasificar_con_llm(oferta: dict, categoria_reglas: str | None) -> dict:
+def clasificar_con_llm(oferta: dict) -> dict:
     """
-    Usa el modelo de OpenAI para clasificar.
-    Devuelve dict: {"categoria": str, "subcategoria": str, "confianza": float}
-    Si falla la API (por ejemplo, por falta de cuota), hace fallback a las reglas.
+    Usa el modelo de Gemini para clasificar.
+    Devuelve dict: {
+        "categoria": str,
+        "subcategoria": str,
+        "confianza": float,
+        "cuoc_codigo": str,
+        "cuoc_titulo": str
+    }
+    Si falla la API o el parseo, devuelve todo "Sin clasificar".
     """
     texto = oferta.get("contenido_limpio") or oferta.get("contenido") or ""
     texto = limpiar_texto(texto)
@@ -118,10 +129,12 @@ def clasificar_con_llm(oferta: dict, categoria_reglas: str | None) -> dict:
     ubicacion = limpiar_texto(oferta.get("ubicacion") or "")
     salario = limpiar_texto(str(oferta.get("salario") or ""))
 
-    system_prompt = (
-        "Eres un asistente experto en mercado laboral colombiano. "
-        "Tu tarea es clasificar ofertas de empleo en categorias predefinidas. "
-        "Responde SIEMPRE en JSON valido."
+    system_instrucciones = (
+        "Eres un asistente experto en mercado laboral colombiano y en la "
+        "clasificacion CUOC de profesiones. "
+        "Tu tarea es clasificar ofertas de empleo en categorias predefinidas "
+        "y, ademas, sugerir un codigo CUOC aproximado. "
+        "RESPONDE SIEMPRE SOLO CON UN JSON VALIDO, sin ningun texto extra."
     )
 
     user_prompt = f"""
@@ -129,11 +142,19 @@ Clasifica la siguiente oferta de empleo en EXACTAMENTE UNA de estas categorias:
 
 {", ".join(CATEGORIES)}
 
-Responde SOLO en JSON con este formato exacto:
+Ademas, usando la clasificacion de profesiones de Colombia (CUOC),
+elige el codigo CUOC mas probable para la ocupacion descrita.
+
+TABLA CUOC (parcial, codigo - titulo):
+{CUOC_RESUMEN if CUOC_RESUMEN else "[No disponible]"}
+
+Responde SOLO en JSON con este formato exacto (sin comentarios ni texto antes o despues):
 {{
   "categoria": "una de las categorias de la lista",
   "subcategoria": "una etiqueta mas especifica o vacia",
-  "confianza": 0.0 a 1.0
+  "confianza": 0.0 a 1.0,
+  "cuoc_codigo": "codigo CUOC mas probable o vacio",
+  "cuoc_titulo": "titulo CUOC asociado o vacio"
 }}
 
 Si el texto describe una feria, rueda de empleo, curso o evento informativo,
@@ -149,56 +170,72 @@ Metadatos:
 - experiencia: "{experiencia}"
 - ubicacion: "{ubicacion}"
 - salario: "{salario}"
-
-Categoria sugerida por reglas (puede estar vacia): "{categoria_reglas}"
 """
 
     try:
-        response = client.responses.create(
-            model=OPENAI_MODEL,
-            input=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt},
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=[
+                system_instrucciones,
+                user_prompt,
             ],
         )
 
-        # Texto bruto devuelto por el modelo
-        try:
-            raw = response.output_text
-        except AttributeError:
-            try:
-                raw = response.output[0].content[0].text
-            except Exception:
-                raw = ""
+        raw = (response.text or "").strip()
 
-        data = json.loads(raw)
-        categoria = data.get("categoria")
+        print("===== RAW GEMINI RESPONSE =====")
+        print(repr(raw))
+        print("================================")
+
+        if not raw:
+            raise ValueError("Gemini devolvió una respuesta vacía.")
+
+        # 1) quitar fences tipo ```json ... ```
+        if raw.startswith("```"):
+            # elimina el inicio ```json o ``` + salto de linea
+            raw = re.sub(r"^```[a-zA-Z0-9]*\s*", "", raw)
+            # elimina el cierre ```
+            raw = re.sub(r"```$", "", raw).strip()
+
+        # 2) si aun asi hay texto alrededor, intenta extraer el primer bloque {...}
+        json_str = None
+        raw_stripped = raw.lstrip()
+        if raw_stripped.startswith("{"):
+            json_str = raw_stripped
+        else:
+            m = re.search(r"\{.*\}", raw, re.DOTALL)
+            if m:
+                json_str = m.group(0)
+
+        if not json_str:
+            raise ValueError("La respuesta de Gemini no contiene un JSON reconocible.")
+
+        data = json.loads(json_str)
+
+        categoria = data.get("categoria", "Sin clasificar")
         subcategoria = data.get("subcategoria", "")
         confianza = float(data.get("confianza", 0.0))
-
-    except RateLimitError:
-        print("⚠️ Sin cuota en OpenAI, usando solo reglas para esta oferta.")
-        categoria = categoria_reglas or "Sin clasificar"
-        subcategoria = ""
-        confianza = 0.0
+        cuoc_codigo = data.get("cuoc_codigo", "")
+        cuoc_titulo = data.get("cuoc_titulo", "")
 
     except Exception as e:
-        print(f"⚠️ Error llamando al LLM ({e}), usando solo reglas.")
-        categoria = categoria_reglas or "Sin clasificar"
+        print(f"⚠️ Error llamando a Gemini o parseando JSON ({e}).")
+        categoria = "Sin clasificar"
         subcategoria = ""
         confianza = 0.0
+        cuoc_codigo = ""
+        cuoc_titulo = ""
 
     # Forzar que la categoría sea una de las nuestras si se desvió
     if categoria not in CATEGORIES:
-        if categoria_reglas in CATEGORIES:
-            categoria = categoria_reglas
-        else:
-            categoria = "Evento/Curso (no empleo)" if "feria" in texto.lower() else "Sin clasificar"
+        categoria = "Sin clasificar"
 
     return {
         "categoria": categoria,
         "subcategoria": subcategoria,
         "confianza": confianza,
+        "cuoc_codigo": cuoc_codigo,
+        "cuoc_titulo": cuoc_titulo,
     }
 
 # ============= PIPELINE PRINCIPAL =============
@@ -211,39 +248,57 @@ def main():
     ofertas = data.get("ofertas_detalladas", [])
     print(f"📦 Ofertas cargadas: {len(ofertas)}")
 
-    # 2. Recorrer ofertas y clasificar
     nuevas_ofertas = []
-    for oferta in ofertas:
+    llm_calls = 0
+
+    # 2. Recorrer ofertas y clasificar
+    for idx, oferta in enumerate(ofertas, start=1):
         texto = limpiar_texto(oferta.get("contenido_limpio") or oferta.get("contenido") or "")
+
         if not es_texto_valido(texto):
-            oferta["categoria_reglas"] = None
             oferta["categoria_llm"] = None
+            oferta["subcategoria"] = ""
             oferta["confianza_llm"] = 0.0
             oferta["categoria_final"] = "Sin clasificar"
+            oferta["cuoc_codigo"] = ""
+            oferta["cuoc_titulo"] = ""
             nuevas_ofertas.append(oferta)
             continue
 
-        categoria_reglas = aplicar_reglas(texto)
-        resultado_llm = clasificar_con_llm(oferta, categoria_reglas)
+        usar_llm = llm_calls < MAX_LLM_CALLS
+
+        if usar_llm:
+            print(f"🔍 [{idx}] Clasificando con Gemini (llamadas usadas: {llm_calls+1}/{MAX_LLM_CALLS})")
+            resultado_llm = clasificar_con_llm(oferta)
+            llm_calls += 1
+        else:
+            resultado_llm = {
+                "categoria": "Sin clasificar",
+                "subcategoria": "",
+                "confianza": 0.0,
+                "cuoc_codigo": "",
+                "cuoc_titulo": "",
+            }
+
         categoria_llm = resultado_llm["categoria"]
         subcategoria = resultado_llm["subcategoria"]
         confianza = resultado_llm["confianza"]
+        cuoc_codigo = resultado_llm["cuoc_codigo"]
+        cuoc_titulo = resultado_llm["cuoc_titulo"]
 
-        if confianza >= 0.7:
-            categoria_final = categoria_llm
-        elif categoria_reglas:
-            categoria_final = categoria_reglas
-        else:
-            categoria_final = categoria_llm
+        # Como solo estamos probando Gemini, la categoria_final = categoria_llm
+        categoria_final = categoria_llm
 
-        oferta["categoria_reglas"] = categoria_reglas
         oferta["categoria_llm"] = categoria_llm
         oferta["subcategoria"] = subcategoria
         oferta["confianza_llm"] = confianza
         oferta["categoria_final"] = categoria_final
+        oferta["cuoc_codigo"] = cuoc_codigo
+        oferta["cuoc_titulo"] = cuoc_titulo
 
         nuevas_ofertas.append(oferta)
 
+    # 3. Construir JSON de salida
     data_salida = dict(data)
     data_salida["ofertas_detalladas"] = nuevas_ofertas
 
@@ -251,9 +306,7 @@ def main():
         json.dump(data_salida, f, ensure_ascii=False, indent=2)
 
     print(f"✅ Clasificación terminada. Archivo guardado en: {RUTA_JSON_SALIDA}")
+    print(f"ℹ️ Llamadas a Gemini realizadas: {llm_calls} (MAX_LLM_CALLS = {MAX_LLM_CALLS})")
 
 if __name__ == "__main__":
     main()
-
-
-
