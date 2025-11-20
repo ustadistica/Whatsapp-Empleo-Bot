@@ -121,11 +121,12 @@
       "lugar_evento": "Calle 59 13-33, Chapinero Edificio Pasaje Galvis, Oficina 124, segundo piso Te esperamos con tu hoja",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
-      "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Convocatoria de empleo presencial",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 5,
@@ -145,11 +146,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Anuncio de Oportunidades Laborales",
+      "confianza_llm": 0.9,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 6,
@@ -169,11 +171,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Evento/Curso (no empleo)",
       "categoria_llm": "Evento/Curso (no empleo)",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "subcategoria": "Feria de Empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 7,
@@ -193,11 +196,12 @@
       "lugar_evento": "Unilago (Cra. 15 78-33) Regístrate:",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Evento/Curso (no empleo)",
       "categoria_llm": "Evento/Curso (no empleo)",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "subcategoria": "Rueda de empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 8,
@@ -217,11 +221,12 @@
       "lugar_evento": "Metrópolis - Av. Carrera 68 75A - 50, Barrios Unidos. Confirma tu asistencia aquí:",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
       "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "subcategoria": "Auxiliar de bodega",
+      "confianza_llm": 0.95,
+      "categoria_final": "Logística/Bodega",
+      "cuoc_codigo": "9411",
+      "cuoc_titulo": "Peones de carga y descarga y otros peones del transporte y almacenamiento"
     },
     {
       "id": 9,
@@ -241,11 +246,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Convocatoria artística",
+      "confianza_llm": 0.9,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "2453",
+      "cuoc_titulo": "Diseñadores gráficos y multimedia"
     },
     {
       "id": 10,
@@ -265,11 +271,12 @@
       "lugar_evento": "Calle 59 13-33, Chapinero Edificio Pasaje Galvis, Oficina 124, segundo piso Te esperamos con tu hoja",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
-      "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Convocatoria de Empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "9412",
+      "cuoc_titulo": "Auxiliares de cocina"
     },
     {
       "id": 14,
@@ -289,11 +296,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Evento/Curso (no empleo)",
       "categoria_llm": "Evento/Curso (no empleo)",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "subcategoria": "Feria de Empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 15,
@@ -313,11 +321,12 @@
       "lugar_evento": "Unilago (Cra. 15 78-33) Regístrate:",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Evento/Curso (no empleo)",
       "categoria_llm": "Evento/Curso (no empleo)",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "subcategoria": "Rueda de empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 16,
@@ -337,11 +346,12 @@
       "lugar_evento": "Metrópolis - Av. Carrera 68 75A - 50, Barrios Unidos. Confirma tu asistencia aquí :",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
       "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "subcategoria": "Auxiliar de Bodega",
+      "confianza_llm": 1.0,
+      "categoria_final": "Logística/Bodega",
+      "cuoc_codigo": "9321",
+      "cuoc_titulo": "Auxiliares de almacén y bodega"
     },
     {
       "id": 89,
@@ -361,11 +371,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Evento/Curso (no empleo)",
       "categoria_llm": "Evento/Curso (no empleo)",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "subcategoria": "Curso de Idiomas",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 247,
@@ -385,11 +396,12 @@
       "lugar_evento": "Fiesta Suba Cl. 147 101-56 Confirma tu asistencia aquí:",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Call center/BPO",
-      "categoria_llm": "Call center/BPO",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Call center/BPO"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Jornada de contratación",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 248,
@@ -409,11 +421,12 @@
       "lugar_evento": "Plazoleta, entrada N 1 Centro Comercial Plaza Imperial (Av. Carrera 104 148-07).",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Call center/BPO",
-      "categoria_llm": "Call center/BPO",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Call center/BPO"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Feria de Empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 249,
@@ -433,11 +446,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Unidad Móvil de Empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 250,
@@ -457,11 +471,12 @@
       "lugar_evento": "Plaza Imperial Conoce todos los detalles aquí:",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Feria de Empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 251,
@@ -481,11 +496,12 @@
       "lugar_evento": "Plaza Imperial Entrada 1 Del 30 de septiembre al 4 de octubre Lunes a viernes: 8 a.m. 4 p.m. Sábado:",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Call center/BPO",
-      "categoria_llm": "Call center/BPO",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Call center/BPO"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Feria de empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 252,
@@ -505,11 +521,12 @@
       "lugar_evento": "Plaza Imperial, entrada 1 (Av. Carrera 104 148-07, entrada del Jumbo, junto al Éxito y la Av. Ciudad",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
-      "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Convocatoria de empleo presencial para roles de Retail, Logística y Conducción",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "9321",
+      "cuoc_titulo": "Empleados de almacén y depósito"
     },
     {
       "id": 254,
@@ -529,11 +546,12 @@
       "lugar_evento": "Plazoleta, entrada N 1 Centro Comercial Plaza Imperial (Av. Carrera 104 148-07).",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Call center/BPO",
-      "categoria_llm": "Call center/BPO",
+      "categoria_llm": "Sin clasificar",
       "subcategoria": "",
       "confianza_llm": 0.0,
-      "categoria_final": "Call center/BPO"
+      "categoria_final": "Sin clasificar",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 379,
@@ -553,11 +571,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Evento/Curso (no empleo)",
       "categoria_llm": "Evento/Curso (no empleo)",
       "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 384,
@@ -577,11 +596,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
-      "categoria_llm": "Logística/Bodega",
+      "categoria_llm": "Sin clasificar",
       "subcategoria": "",
       "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "categoria_final": "Sin clasificar",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 385,
@@ -601,11 +621,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Convocatoria para evento internacional",
+      "confianza_llm": 0.95,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "2653",
+      "cuoc_titulo": "Diseñadores gráficos y multimedia"
     },
     {
       "id": 387,
@@ -625,11 +646,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 8000000.0,
-      "categoria_reglas": "Tecnología/Ingeniería",
       "categoria_llm": "Tecnología/Ingeniería",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Tecnología/Ingeniería"
+      "subcategoria": "Ingeniería de Sistemas",
+      "confianza_llm": 0.98,
+      "categoria_final": "Tecnología/Ingeniería",
+      "cuoc_codigo": "2519",
+      "cuoc_titulo": "Otros profesionales de las tecnologías de la información y las comunicaciones n.c.p."
     },
     {
       "id": 388,
@@ -649,11 +671,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 2109440.0,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Tecnología/Ingeniería",
+      "subcategoria": "Mecánica Automotriz",
+      "confianza_llm": 0.9,
+      "categoria_final": "Tecnología/Ingeniería",
+      "cuoc_codigo": "7231",
+      "cuoc_titulo": "Mecánicos y reparadores de motores de vehículos automotores"
     },
     {
       "id": 389,
@@ -673,11 +696,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 3906000.0,
-      "categoria_reglas": "Salud",
       "categoria_llm": "Salud",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Salud"
+      "subcategoria": "Enfermería",
+      "confianza_llm": 0.98,
+      "categoria_final": "Salud",
+      "cuoc_codigo": "2221",
+      "cuoc_titulo": "Enfermeros profesionales (o licenciados en enfermería)"
     },
     {
       "id": 390,
@@ -697,11 +721,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 2972000.0,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Retail/Comercial",
+      "subcategoria": "Gestión comercial",
+      "confianza_llm": 0.9,
+      "categoria_final": "Retail/Comercial",
+      "cuoc_codigo": "1221",
+      "cuoc_titulo": "Gerentes de ventas y mercadeo"
     },
     {
       "id": 394,
@@ -721,11 +746,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 8000000.0,
-      "categoria_reglas": "Tecnología/Ingeniería",
       "categoria_llm": "Tecnología/Ingeniería",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Tecnología/Ingeniería"
+      "subcategoria": "Ingeniería de preventa",
+      "confianza_llm": 1.0,
+      "categoria_final": "Tecnología/Ingeniería",
+      "cuoc_codigo": "2433",
+      "cuoc_titulo": "Profesionales de ventas técnicas y comerciales"
     },
     {
       "id": 395,
@@ -745,11 +771,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 2109440.0,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Tecnología/Ingeniería",
+      "subcategoria": "Mecánico de vehículos",
+      "confianza_llm": 0.95,
+      "categoria_final": "Tecnología/Ingeniería",
+      "cuoc_codigo": "7231",
+      "cuoc_titulo": "Mecánicos y ajustadores de vehículos de motor"
     },
     {
       "id": 398,
@@ -769,11 +796,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 3906000.0,
-      "categoria_reglas": "Salud",
       "categoria_llm": "Salud",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Salud"
+      "subcategoria": "Enfermería",
+      "confianza_llm": 1.0,
+      "categoria_final": "Salud",
+      "cuoc_codigo": "2221",
+      "cuoc_titulo": "Enfermeros profesionales"
     },
     {
       "id": 399,
@@ -793,11 +821,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 2972000.0,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Retail/Comercial",
+      "subcategoria": "Gestión de Ventas/Operaciones",
+      "confianza_llm": 0.9,
+      "categoria_final": "Retail/Comercial",
+      "cuoc_codigo": "2420",
+      "cuoc_titulo": "Coordinadores y supervisores de ventas, mercadeo y desarrollo"
     },
     {
       "id": 402,
@@ -817,11 +846,12 @@
       "lugar_evento": "99 Nº18-02, Formulario:",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
-      "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "categoria_llm": "Retail/Comercial",
+      "subcategoria": "Personal de tienda/operaciones",
+      "confianza_llm": 0.9,
+      "categoria_final": "Retail/Comercial",
+      "cuoc_codigo": "5220",
+      "cuoc_titulo": "Vendedores de mostrador y demostradores"
     },
     {
       "id": 403,
@@ -841,11 +871,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Call center/BPO",
-      "categoria_llm": "Call center/BPO",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Call center/BPO"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Feria de empleo para Asesor Call Center",
+      "confianza_llm": 0.95,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "4223",
+      "cuoc_titulo": "Empleados de centros de llamadas"
     },
     {
       "id": 404,
@@ -865,11 +896,12 @@
       "lugar_evento": "81b con Av Boyacá (Edificio Connecta) Regístrate aquí",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Call center/BPO",
       "categoria_llm": "Call center/BPO",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Call center/BPO"
+      "subcategoria": "Servicio al Cliente Bilingüe",
+      "confianza_llm": 0.98,
+      "categoria_final": "Call center/BPO",
+      "cuoc_codigo": "4222",
+      "cuoc_titulo": "Agentes de centros de llamadas"
     },
     {
       "id": 406,
@@ -889,11 +921,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Call center/BPO",
+      "subcategoria": "Gestión de Servicio al Cliente",
+      "confianza_llm": 0.9,
+      "categoria_final": "Call center/BPO",
+      "cuoc_codigo": "3341",
+      "cuoc_titulo": "Supervisores de centro de llamadas"
     },
     {
       "id": 408,
@@ -913,11 +946,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
       "categoria_llm": "Sin clasificar",
       "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "confianza_llm": 1.0,
+      "categoria_final": "Sin clasificar",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 409,
@@ -937,11 +971,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
       "categoria_llm": "Evento/Curso (no empleo)",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "subcategoria": "Feria laboral",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 415,
@@ -961,11 +996,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
+      "categoria_llm": "Evento/Curso (no empleo)",
       "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "confianza_llm": 0.95,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 417,
@@ -985,11 +1021,12 @@
       "lugar_evento": "75 69h 05, barrio Las Ferias CAMI Recuerda llevar tu hoja de vida y documento de identificación.",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 1975692.0,
-      "categoria_reglas": "Salud",
-      "categoria_llm": "Salud",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Salud"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Convocatoria de Empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "2221",
+      "cuoc_titulo": "Enfermeros y enfermeras profesionales"
     },
     {
       "id": 418,
@@ -1009,11 +1046,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Anuncio de servicio",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 419,
@@ -1033,11 +1071,12 @@
       "lugar_evento": "Unilago (Cra. 15 78-33)",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Tecnología/Ingeniería",
-      "categoria_llm": "Tecnología/Ingeniería",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Tecnología/Ingeniería"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Feria de empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 420,
@@ -1057,11 +1096,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
-      "categoria_llm": "Sin clasificar",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Anuncio de servicio de empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 421,
@@ -1081,11 +1121,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Salud",
       "categoria_llm": "Salud",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Salud"
+      "subcategoria": "Enfermería",
+      "confianza_llm": 0.95,
+      "categoria_final": "Salud",
+      "cuoc_codigo": "3251",
+      "cuoc_titulo": "Técnicos y tecnólogos en enfermería"
     },
     {
       "id": 424,
@@ -1105,11 +1146,12 @@
       "lugar_evento": "75 69h 05, barrio Las Ferias CAMI Recuerda llevar tu hoja de vida y documento de identificación.",
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": 1975692.0,
-      "categoria_reglas": "Salud",
-      "categoria_llm": "Salud",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Salud"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Convocatoria de empleo presencial",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "2221",
+      "cuoc_titulo": "Enfermeras/os profesionales"
     },
     {
       "id": 437,
@@ -1129,11 +1171,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
-      "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Jornada de Selección",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 439,
@@ -1153,11 +1196,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Evento/Curso (no empleo)",
       "categoria_llm": "Evento/Curso (no empleo)",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Evento/Curso (no empleo)"
+      "subcategoria": "Curso de Marketing Digital",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 440,
@@ -1177,11 +1221,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": null,
       "categoria_llm": "Sin clasificar",
       "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Sin clasificar"
+      "confianza_llm": 0.05,
+      "categoria_final": "Sin clasificar",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     },
     {
       "id": 446,
@@ -1201,11 +1246,12 @@
       "lugar_evento": null,
       "fecha": "2025-10-14 00:00:00",
       "salario_valor": NaN,
-      "categoria_reglas": "Logística/Bodega",
-      "categoria_llm": "Logística/Bodega",
-      "subcategoria": "",
-      "confianza_llm": 0.0,
-      "categoria_final": "Logística/Bodega"
+      "categoria_llm": "Evento/Curso (no empleo)",
+      "subcategoria": "Feria de empleo",
+      "confianza_llm": 1.0,
+      "categoria_final": "Evento/Curso (no empleo)",
+      "cuoc_codigo": "",
+      "cuoc_titulo": ""
     }
   ]
 }

@@ -22,7 +22,7 @@ RUTA_JSON_SALIDA = SCRIPT_DIR / "analisis_ofertas_empleo_clasificado.json"
 # Ruta de la tabla CUOC (ajusta si está en otro sitio o nombre)
 CUOC_INDEX_PATH = SCRIPT_DIR / "CUOC-indice-2024.xlsx"
 MAX_FILAS_CUOC = 200          # para no meter toda la tabla en el prompt
-MAX_LLM_CALLS = 4             # SOLO 1 llamada a Gemini (modo prueba)
+MAX_LLM_CALLS = 50             # SOLO 1 llamada a Gemini (modo prueba)
 
 # Modelo de Gemini
 GEMINI_MODEL = "gemini-2.5-flash"
